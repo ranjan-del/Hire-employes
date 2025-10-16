@@ -1,3 +1,12 @@
+This is project is builkd for a assessement purpose , using 
+Frontend: Next.js 14 (App Router) + React + TailwindCSS
+Backend: FastAPI (Python) for scoring & selection endpoints
+Storage: SQLite (via Prisma) for speed; can swap to Postgres later
+
+This project help to get the details of user applied for a job , using the data thw system will score each employe based on the skills and experience.
+It also suggest which employee suits to which Role , based on the skills and exp, 
+At last we can find out 5 personal who can match the role with more skills and exp (top scorer)
+
 # root folder
 mkdir hiring-ops && cd hiring-ops
 
