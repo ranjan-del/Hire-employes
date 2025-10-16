@@ -1,0 +1,36 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Candidate {
+  id                String   @id @default(cuid())
+  name              String?
+  email             String   @unique
+  location          String?
+  salaryExpectation Int?
+
+  // SQLite: use Json instead of String[] (lists aren’t supported on SQLite)
+  skills Json       // array of strings
+  roles  Json       // array of strings
+  raw    Json       // full raw candidate object
+
+  scores   Score[]
+  createdAt DateTime @default(now())
+}
+
+model Score {
+  id          String   @id @default(cuid())
+  candidateId String
+  bucket      String
+  score       Float
+  factors     Json     // explainability payload
+
+  candidate Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+}
